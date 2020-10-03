@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load material_form %}
+
+{% block content %}
+<style type="text/css">
+    .btn,
+.btn-large,
+.btn-small,
+.btn-flat {
+   border-radius: 4px;
+   font-weight: 500;
+}
+
+.card:hover {
+   box-shadow: 0px 10px 35px 0px rgba(0, 0, 0, 0.18);
+}
+
+.card {
+   border-radius: 6px;
+   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+
+</style>
+
+<div class="section">
+    <form method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <div class="pl50 pr30">
+            <div class="col xl12 l12 m12 s12">
+                <div class="card">
+                    <div class="card-content">
+
+                        <ul class="stepper horizontal">
+                            <li class="step server-host active">
+                                <div class="step-title server-host-title waves-effect waves-dark">Complaint</div>
+                                <div class="step-content">
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label >Title</label>
+                                                <p type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{complaints.title}}
+                                                </p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label >Name of Respondent</label>
+                                                <p  type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{complaints.name_of_respondent}}
+                                                </p>
+                                        </div>
+
+                                    </div>
+
+                                     <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label>Address of Respondent</label>
+                                                <p type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{complaints.address_of_respondent}}
+                                                </p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label >DPO Contacted</label>
+                                                <p  type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{complaints.dpo_contacted}}
+                                                </p>
+                                        </div>
+                                         <div class="col-md-6 mb-3">
+                                            <label >Details of Complaint</label>
+                                                <p  type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{complaints.details_of_complaint}}
+                                                </p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="step-actions">
+                                        <button class="waves-effect waves-dark btn green darken-1 next-step"
+                                                data-feedback="anyThing">Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="step requirements">
+                                <div class="step-title requirements-title waves-effect waves-dark">Representative</div>
+                                <div class="step-content">
+
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label >Title</label>
+                                                <p type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{representative.title}}
+                                                </p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label >Full Names</label>
+                                                <p  type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{representative.full_names}}
+                                                </p>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label>Address</label>
+                                                <p type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{representative.address}}
+                                                </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label >E-mail Address</label>
+                                                <p  type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{representative.email_address}}
+                                                </p>
+                                        </div>
+                                         <div class="col-md-6 mb-3">
+                                            <label >Phone Number</label>
+                                                <p  type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{representative.phone_number}}
+                                                </p>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label >Relationship To Complainant</label>
+                                                <p  type="text" style="background-color: #f8f8f8;" class="form-control">
+                                                    {{representative.relationship_to_complainant}}
+                                                </p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="step-actions">
+                                        <button class="waves-effect waves-dark btn green darken-1 next-step">Continue
+                                        </button>
+                                        <button class="waves-effect waves-dark btn-flat previous-step">Back</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="step default-step">
+                                <div class="step-title waves-effect waves-dark">Respondent</div>
+                                <div class="step-content">
+                                    {% form form=creds_owner_form %}{% endform %}
+
+                                    {% if request.user.is_staff %}
+                                    <a class="waves-effect waves-dark btn green darken-1 right"
+                                            type="submit" href="{% url 'admin_home' %}" >Complaints
+                                    </a>
+
+                                    {% else %}
+                                    <a class="waves-effect waves-dark btn green darken-1 right"
+                                            type="submit" href="{% url 'account' %}" > Account
+                                    </a>
+
+                                    {% endif %}
+<!--                                    <a class="waves-effect waves-dark btn green darken-1 right"-->
+
+<!--                                    href="{%url 'requirements' %}" > Submit-->
+<!--                                    </a>-->
+                                </div>
+                            </li>
+                        </ul>
+                        {% for field in registration_form %}
+                        <div>
+                            {% for error in field.errors %}
+                            <p style="color: red">{{ error }} + {{field.name}}</p>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+
+                        {% if registration_form.non_field_errors %}
+                        <div style="color: red">
+                            <p>{{registration_form.non_field_errors}}</p>
+                        </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('select').formSelect();
+});
+
+function anyThing(destroyFeedback) {
+  setTimeout(function(){ destroyFeedback(true); }, 1500);
+}
+
+function noThing(destroyFeedback) {
+  setTimeout(function(){ destroyFeedback(true); }, 10000);
+}
+
+var stepperDiv = document.querySelector('.stepper');
+console.log(stepperDiv);
+var stepper = new MStepper(stepperDiv);
+
+</script>
+
+{% endblock content %}

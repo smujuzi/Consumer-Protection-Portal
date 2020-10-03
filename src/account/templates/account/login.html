@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load material_form %}
+
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+  .form-signin {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px 40px;
+    min-height: 350px;
+    }
+
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+
+  .h5  {
+    text-align: center;
+  }
+      .btn,
+.btn-large,
+.btn-small,
+.btn-flat {
+   border-radius: 4px;
+   font-weight: 500;
+}
+
+.card:hover {
+   box-shadow: 0px 10px 35px 0px rgba(0, 0, 0, 0.18);
+}
+
+.card {
+   border-radius: 6px;
+   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+</style>
+
+
+<form class="card form-signin mt120" method="post">{% csrf_token %}
+
+    <h5 class="h5 font-weight-normal" style="font-weight: 600px;">Login</h5>
+
+
+    {% form form=login_form %}{% endform %}
+
+    {% for field in login_form %}
+    <p>
+        {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    </p>
+    {% endfor %}
+    {% if login_form.non_field_errors %}
+    <div style="color: red">
+        <p>{{login_form.non_field_errors}}</p>
+    </div>
+
+    {% endif %}
+
+    <div class="center">
+        <button class="waves-effect waves-dark btn green darken-1" type="submit">Log in</button>
+    </div>
+
+    <div class="center" style="margin-top: 15px;">
+        <a class="blue-text darken-4" href="{% url 'password_reset' %}">Reset password</a>
+    </div>
+
+</form>
+
+
+{% endblock content %}
+
+

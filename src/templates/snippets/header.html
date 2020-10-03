@@ -1,0 +1,107 @@
+<style type="text/css">
+    nav{
+    height: 85px;
+    }
+    nav ul a,
+    nav .brand-logo {
+      color: #444;
+    }
+
+    p {
+      line-height: 2rem;
+    }
+
+    .sidenav-trigger {
+      color: #26a69a;
+    }
+
+</style>
+
+
+<div class="">
+    <nav class="white z-depth-3 valign" role="navigation">
+        <div class="nav-wrapper ml80 mr50 pt10">
+            <a href="#" class="brand-logo" style="font-size: 1.45em;">CPO-Uganda</a>
+            <ul class="right hide-on-med-and-down">
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a class="p-2 text-dark green-text lighten-2" href="{% url 'user' %}" style="font-weight: 500;">
+                        <i class="fa fa-home"></i> Home
+                    </a>
+                </li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">About Us</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Consumer Protection</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Resources</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Opportunities</a></li>
+                <li>
+                    <a class="p-2 text-dark" href="{% url 'faqs' %}">
+                         <i class="far fa-question-circle" style="font-weight: 400px; font-size: 1.1em; padding-top: 3px;"></i> FAQs
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-trigger" data-target='dropdown1'>
+                        <img src="https://soe.uncg.edu/wp-content/uploads/2018/12/DrBrianMcGowanHeadshot-crop-1024x1024.jpg"
+                             alt="" class="dropdown-trigger circle responsive-img"
+                             style="max-height: 50px; vertical-align: middle; ">
+                        <span style="text-transform: capitalize; font-style: oblique; margin-left:5px; font-weight: 500;">{% if first_name %}
+                               {{ first_name }} {% endif %}
+                         </span>
+                    </a>
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a class="p-2 text-dark" href="{% url 'account' %}" style="color: #444;">Account</a></li>
+                        <li><a class="p-2 text-dark" href="{% url 'logout' %}" style="color: #444;">Logout</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li><a class=" p-2 text-dark" href="{% url 'home' %}">Home</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">About Us</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Consumer Protection</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Resources</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Opportunities</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Contact Us</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'login' %}">Login</a></li>
+                <li><a class="waves-effect waves-dark btn green darken-1"
+                       href="{% url 'register' %}">Register</a></li>
+                <li><a class="waves-effect waves-dark btn green darken-1"
+                       href="{% url 'register_staff' %}">Staff Registeration</a></li>
+
+                {% endif %}
+            </ul>
+            <ul id="nav-mobile" class="sidenav">
+                {% if request.user.is_authenticated %}
+                <li><a class="p-2 text-dark mr-3"><span style="font-style: oblique;">Hello, </span> <span
+                        style="text-transform: capitalize;">{{request.user.username}}</span></a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Home</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'account' %}">Account</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'logout' %}">Logout</a></li>
+
+                {% else %}
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Home</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">About Us</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Consumer Protection</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Resources</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Opportunities</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'home' %}">Contact Us</a></li>
+                <li><a class="p-2 text-dark" href="{% url 'login' %}">Login</a></li>
+                <li><a class="waves-effect waves-dark btn green darken-1"
+                       href="{% url 'register' %}">Register</a></li>
+                <li><a class="waves-effect waves-dark btn green darken-1"
+                       href="{% url 'register_staff' %}">Staff Registeration</a></li>
+                {% endif %}
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <script type="text/javascript">
+        var elem = document.querySelector('.sidenav');
+        var instance = new M.Sidenav(elem);
+
+
+         $('.dropdown-trigger').dropdown();
+
+
+    </script>
+</div>
+
+
+<!-- End Header -->

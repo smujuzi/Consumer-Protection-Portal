@@ -1,0 +1,47 @@
+<style type="text/css">
+	.footer{
+		min-height: 100px;
+	}
+
+	.page-footer{
+		background-color: #388e3c;
+	}
+
+
+
+</style>
+
+<!-- Footer -->
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Consumer Protection - Uganda</h5>
+                <p class="grey-text text-lighten-4">Protection for the Ugandan community online</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Useful Links</h5>
+                <ul>
+<!--                    <li><a class="grey-text text-lighten-3" href="{% url 'account' %}">Report a Breach</a></li>-->
+                    <li>
+                        <a class="grey-text text-lighten-3" href="{% url 'protect:complaint' %}">File a Complaint</a>
+                    </li>
+                    <li><a class="grey-text text-lighten-3" href="{% url 'account' %}">Register</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{% url 'account' %}">Forms</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{% url 'account' %}">Newsletters Subscription</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{% url 'account' %}">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2020 All rights reserved
+            <a class="grey-text text-lighten-4 right" href="https://www.nita.go.ug/" target="_blank">NITA-U</a>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+
+

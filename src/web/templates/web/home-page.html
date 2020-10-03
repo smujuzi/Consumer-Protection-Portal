@@ -1,0 +1,1075 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style type="text/css">
+
+	@media (max-width: 768px) {
+		.right-column{
+			margin-left: 0px;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.right-column{
+			margin-left: 20px;
+		}
+	}
+
+	.blog-post-container{
+		background-color: #fff;
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	.create-post-bar{
+		background-color: #fff;
+		margin-bottom:20px;
+	}
+
+	.left-column{
+		padding:0px;
+	}
+
+	.right-column{
+		padding:0px;
+	}
+
+	/** Material **/
+	.collection .collection-item{
+		cursor: pointer;
+		padding: 16px 20px;
+	}
+
+	ul li > .material-icons.link-icon{
+	padding:8px;
+	font-size: 1.3em;
+	color: #555;
+	}
+
+	ul li > .collection-link{
+		vertical-align: 3px;
+		color: #555;
+		padding-left: 10px;
+		transition: 0.2s ease;
+	}
+
+	ul li > .font-icons{
+	    padding:8px;
+	    font-size: 2.2em;
+	    color: #555;
+	}
+
+	ul li > .collection-link span{
+		font-size: 1.05em;
+		transition: 0.2s ease-in;
+
+	}
+
+	ul li > .collection-link span:hover{
+		text-decoration: underline;
+	}
+
+	ul li > .collection-link .material-icons{
+		    margin-top: 7px;
+	}
+
+	ul li > .collection-link:hover{
+		color: #2e7d32;
+		cursor: pointer;
+	}
+
+    /** Datatable **/
+
+    div.material-table {
+      padding: 0;
+    }
+
+    div.material-table .hiddensearch {
+      padding: 0 14px 0 24px;
+      border-bottom: solid 1px #DDDDDD;
+      display: none;
+    }
+
+    div.material-table .hiddensearch input {
+      margin: 0;
+      border: transparent 0 !important;
+      height: 48px;
+      color: rgba(0, 0, 0, .84);
+    }
+
+    div.material-table .hiddensearch input:active {
+      border: transparent 0 !important;
+    }
+
+    div.material-table table {
+      table-layout: fixed;
+    }
+
+    div.material-table .table-header {
+      height: 64px;
+      padding-left: 24px;
+      padding-right: 14px;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      display: flex;
+      -webkit-display: flex;
+      border-bottom: solid 1px #DDDDDD;
+    }
+
+    div.material-table .table-header .actions {
+      display: -webkit-flex;
+      margin-left: auto;
+    }
+
+    div.material-table .table-header .btn-flat {
+        min-width: 36px;
+        padding: 0 8px;
+    }
+
+    div.material-table .table-header input {
+      margin: 0;
+      height: auto;
+    }
+
+    div.material-table .table-header i {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 24px;
+    }
+
+    div.material-table .table-footer {
+      height: 56px;
+      padding-left: 24px;
+      padding-right: 14px;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-justify-content: flex-end;
+      justify-content: flex-end;
+      -webkit-align-items: center;
+      align-items: center;
+      font-size: 12px !important;
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    div.material-table .table-footer .dataTables_length {
+      display: -webkit-flex;
+      display: flex;
+    }
+
+    div.material-table .table-footer label {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.54);
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row
+      /* works with row or column */
+
+      flex-direction: row;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+    }
+
+    div.material-table .table-footer .select-wrapper {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row
+      /* works with row or column */
+
+      flex-direction: row;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+    }
+
+    div.material-table .table-footer .dataTables_info,
+    div.material-table .table-footer .dataTables_length {
+      margin-right: 32px;
+    }
+
+    div.material-table .table-footer .material-pagination {
+      display: flex;
+      -webkit-display: flex;
+      margin: 0;
+    }
+
+    div.material-table .table-footer .material-pagination li:first-child {
+      margin-right: 24px;
+    }
+
+    div.material-table .table-footer .material-pagination li a {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    div.material-table .table-footer .select-wrapper input.select-dropdown {
+      margin: 0;
+      border-bottom: none;
+      height: auto;
+      line-height: normal;
+      font-size: 12px;
+      width: 40px;
+      text-align: right;
+    }
+
+    div.material-table .table-footer select {
+      background-color: transparent;
+      width: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      height: auto;
+      margin-left: 20px;
+    }
+
+    div.material-table .table-title {
+      font-size: 20px;
+      color: #000;
+    }
+
+    div.material-table table tr td {
+      padding: 0 0 0 56px;
+      height: 48px;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.87);
+      border-bottom: solid 1px #DDDDDD;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    div.material-table table tr td a {
+      color: inherit;
+    }
+
+    div.material-table table tr td a i {
+      font-size: 20px;
+      margin-top: 9px;
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    div.material-table table tr td a i.view-icon:hover {
+      color: #43a047;
+    }
+
+    div.material-table table tr td a i.edit-icon:hover {
+      color: #1e88e5;
+    }
+
+    div.material-table table tr td a i.delete-icon:hover {
+      color: #e53935;
+    }
+
+    div.material-table table tr {
+      font-size: 12px;
+    }
+
+    div.material-table table th {
+      font-size: 12px;
+      font-weight: 500;
+      color: #757575;
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 0;
+      height: 56px;
+      padding-left: 56px;
+      vertical-align: middle;
+      outline: none !important;
+    }
+
+    div.material-table table th.sorting_asc,
+    div.material-table table th.sorting_desc {
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    div.material-table table th.sorting:after,
+    div.material-table table th.sorting_asc:after,
+    div.material-table table th.sorting_desc:after {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 16px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      word-wrap: normal;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+      content: "arrow_back";
+      -webkit-transform: rotate(90deg);
+      display: none;
+      vertical-align: middle;
+    }
+
+    div.material-table table th.sorting:hover:after,
+    div.material-table table th.sorting_asc:after,
+    div.material-table table th.sorting_desc:after {
+      display: inline-block;
+    }
+
+    div.material-table table th.sorting_desc:after {
+      content: "arrow_forward";
+    }
+
+    div.material-table table tbody tr:hover {
+      background-color: #EEE;
+    }
+
+    div.material-table table th:first-child,
+    div.material-table table td:first-child {
+      padding: 0 0 0 24px;
+    }
+
+    div.material-table table th:last-child,
+    div.material-table table td:last-child {
+      padding: 0 14px 0 0;
+    }
+
+
+/** Custom Card **/
+.home-main{
+    margin-top: -10px;
+}
+
+.card .card-content{
+    padding: 0px 18px;
+}
+
+.card .card-content .card-title.host-title{
+    padding-top: 15px;
+}
+
+.card .card-content .host-info{
+    padding-bottom: 15px;
+}
+
+/** Carousel **/
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.middle-indicator{
+   position:absolute;
+   top:40%;
+   }
+  .middle-indicator-text{
+   font-size: 3.2rem;
+  }
+  a.middle-indicator-text{
+    color: #f2f2f2 !important;
+  }
+.content-indicator{
+    width: 64px;
+    height: 64px;
+    background: none;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fa.fa-newspaper {
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #888;
+  background-color: red;
+
+}
+
+
+.circle-icon {
+    background: #ffc0c0;
+    display-inline: block;
+    color: #f9f9f9;
+    padding: 4px 10px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+/** Text content **/
+.slider-description{
+    color: #ffc107;
+    margin-top: -15px;
+}
+.text-description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+<div class="mt20">
+    <div class="row">
+        <!-- Top 'Request Host' bar -->
+        <div class="col s12 m9 l9">
+            <div class="home-main">
+                <div class="carousel carousel-slider center" data-indicators="true" style="margin-top: -20px;">
+                    <div class="carousel-fixed-item center middle-indicator">
+                        <div class="left">
+                            <a href="Previo"
+                               class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
+                                    class="material-icons left middle-indicator-text">chevron_left</i></a>
+                        </div>
+
+                        <div class="right">
+                            <a href="Siguiente"
+                               class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
+                                    class="material-icons right middle-indicator-text">chevron_right</i></a>
+                        </div>
+                    </div>
+                    <div class="carousel-item white-text" style="postion: relative; max-height: 300px;">
+                        <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(0,0,0,0.6);"
+                             class="">
+                            <h2 class="" style="text-align: center; margin-top: 10%">Consumer security: Consumer
+                                protection and
+                                remote access</h2>
+                            <div class="slider-description">
+                                <p>
+                                    Businesses need to be proactive in setting best practices to protect the interests
+                                    of their customers
+                                </p>
+                                <a class="waves-effect waves-dark btn teal">Read More</a>
+                            </div>
+                        </div>
+                        <img src="http://cop.ug/88aaceba89a99dd70452ac22a2e5b313.jpg">
+
+                    </div>
+                    <a class="carousel-item white-text" href="#three!">
+                        <img src="http://cop.ug//978912fae244c9c8a1555a0e383a2bc7.jpg">
+                    </a>
+                    <a class="carousel-item white-text" href="#two!">
+                        <img src="http://cop.ug/bd40a4f6c7bb437e8dd7fddf580d78ef.jpg">
+                    </a>
+                </div>
+
+                <div class="row pl10 mt20">
+                    <div class=" col s12 m6 l6">
+                        <div class="pt10">
+                            <h5 class="" style="font-weight: 500; color: #444;"><i class="fa fa-bullhorn"
+                                                                                   aria-hidden="true"
+                                                                                   style="font-weight: 400;"></i>
+                                Updates
+                            </h5>
+                            <div class="divider"></div>
+                            <div class="row mt10" style="max-height: 80px;">
+                                <div class="col s3 m3 l3">
+                                    <div class="card" style="">
+                                        <div class="card-image">
+                                            <img src="https://mdbootstrap.com/img/Photos/Others/img (41).jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s8 m8 l8">
+                                    <a class="truncate light-blue-text"><strong>New consumer protection
+                                        legislation</strong><span
+                                            class="right">
+                                        <i data-test="fa" class="fa fa-angle-double-right light-green-text lighten-3"
+                                           style="font-size: 0.8em;"></i></span></a>
+                                    <p class="text-description"
+                                       style="margin-top: 1px; color: #555; line-height: 1.4em;">Lorem
+                                        Ipsum is simply
+                                        dummy text of the printing and typesetting industry.</p>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-top: -7px;"></div>
+                            <div class="row mt10" style="max-height: 80px;">
+                                <div class="col s3 m3 l3">
+                                    <div class="card" style="">
+                                        <div class="card-image">
+                                            <img src="https://mdbootstrap.com/img/Photos/Others/images/13.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s8 m8 l8">
+                                    <a class="truncate light-blue-text"><strong>How the GDPR could change in
+                                        2020</strong><span
+                                            class="right">
+                                        <i data-test="fa" class="fa fa-angle-double-right light-green-text lighten-3"
+                                           style="font-size: 0.8em;"></i></span></a>
+                                    <p class="text-description"
+                                       style="margin-top: 1px; color: #555; line-height: 1.4em;">Lorem
+                                        Ipsum is simply
+                                        dummy text of the printing and typesetting industry.</p>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-top: -7px;"></div>
+                            <div class="row mt10" style="max-height: 80px;">
+                                <div class="col s3 m3 l3">
+                                    <div class="card" style="">
+                                        <div class="card-image">
+                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20%28122%29.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s8 m8 l8">
+                                    <a class="truncate light-blue-text"><strong>Do users know their GDPR data privacy
+                                        rights?</strong><span
+                                            class="right">
+                                        <i data-test="fa" class="fa fa-angle-double-right light-green-text lighten-3"
+                                           style="font-size: 0.8em;"></i></span></a>
+                                    <p class="text-description"
+                                       style="margin-top: 1px; color: #555; line-height: 1.4em;">Lorem
+                                        Ipsum is simply
+                                        dummy text of the printing and typesetting industry.</p>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-top: -7px;"></div>
+                            <div class="row mt10" style="max-height: 80px;">
+                                <div class="col s3 m3 l3">
+                                    <div class="card" style="">
+                                        <div class="card-image">
+                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/8-col/img%20%2848%29.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s8 m8 l8">
+                                    <a class="truncate light-blue-text"><strong>Data sharing and GDPR
+                                        compliance</strong><span
+                                            class="right">
+                                        <i data-test="fa" class="fa fa-angle-double-right light-green-text lighten-3"
+                                           style="font-size: 0.8em;"></i></span></a>
+                                    <p class="text-description"
+                                       style="margin-top: 1px; color: #555; line-height: 1.4em;">Lorem
+                                        Ipsum is simply
+                                        dummy text of the printing and typesetting industry.</p>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-top: -7px;"></div>
+
+                        </div>
+                    </div>
+                    <div class=" col s12 m6 l6">
+                        <div class="pt10">
+                            <h5 class="" style="font-weight: 500; color: #444;"><i class=" fa fa-newspaper font-icons"
+                                                                                   style="font-weight: 400;"></i>
+                                Latest News
+                            </h5>
+                            <div class="divider"></div>
+                            <div class="row mt10" style="max-height: 80px;">
+                                <div class="col s3 m3 l3">
+                                    <div class="card" style="">
+                                        <div class="card-image">
+                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20%28120%29.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s8 m8 l8">
+                                    <a class="truncate light-blue-text"><strong>Safer Internet Day</strong><span
+                                            class="right">
+                                        <i data-test="fa" class="fa fa-angle-double-right light-green-text lighten-3"
+                                           style="font-size: 0.8em;"></i></span></a>
+                                    <p class="text-description"
+                                       style="margin-top: 1px; color: #555; line-height: 1.4em;">
+                                        Promoting and enabling a culture of respect in the #digital world is the first
+                                        step towards creating a better #internet for all.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-top: -7px;"></div>
+                            <div class="row mt10" style="max-height: 80px;">
+                                <div class="col s3 m3 l3">
+                                    <div class="card" style="">
+                                        <div class="card-image">
+                                            <img src="https://i.picsum.photos/id/1016/3844/2563.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s8 m8 l8">
+                                    <a class="truncate light-blue-text"><strong>eSafety Office</strong><span
+                                            class="right">
+                                        <i data-test="fa" class="fa fa-angle-double-right light-green-text lighten-3"
+                                           style="font-size: 0.8em;"></i></span></a>
+                                    <p class="text-description"
+                                       style="margin-top: 1px; color: #555; line-height: 1.4em;">
+                                        Play your part by sharing below your most useful online safety tip.</p>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-top: -7px;"></div>
+                            <div class="row mt10" style="max-height: 80px;">
+                                <div class="col s3 m3 l3">
+                                    <div class="card" style="">
+                                        <div class="card-image">
+                                            <img src="https://mdbootstrap.com/img/Photos/Others/img (28).jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s8 m8 l8">
+                                    <a class="truncate light-blue-text"><strong>Internet Watch Foundation</strong><span
+                                            class="right">
+                                        <i data-test="fa" class="fa fa-angle-double-right light-green-text lighten-3"
+                                           style="font-size: 0.8em;"></i></span></a>
+                                    <p class="text-description"
+                                       style="margin-top: 1px; color: #555; line-height: 1.4em;">
+                                        NITA-U is proud to partner on this adding Uganda to the much needed global
+                                        effort to ensure a safe cyber space for children.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-top: -7px;"></div>
+                            <div class="row mt10" style="max-height: 80px;">
+                                <div class="col s3 m3 l3">
+                                    <div class="card" style="">
+                                        <div class="card-image">
+                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20%28121%29.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s8 m8 l8">
+                                    <a class="truncate light-blue-text"><strong>Safer Internet Day</strong><span
+                                            class="right">
+                                        <i data-test="fa" class="fa fa-angle-double-right light-green-text lighten-3"
+                                           style="font-size: 0.8em;"></i></span></a>
+                                    <p class="text-description"
+                                       style="margin-top: 1px; color: #555; line-height: 1.4em;">Lorem
+                                        Ipsum is simply
+                                        dummy text of the printing and typesetting industry.</p>
+                                </div>
+                            </div>
+                            <div class="divider" style="margin-top: -7px;"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Top 'Request Host' bar -->
+        <!-- Right 'Request Host' column  -->
+        <div class="col s12 m3 l3 pt10">
+            <ul class="card collection">
+                <!--                <li class="collection-item">-->
+                <!--                    <i class="material-icons link-icon">lock_open</i>-->
+                <!--                    <a href="{% url 'protect:complaint' %}" class="collection-link"><span>Report a Breach</span></a>-->
+
+                <!--                </li>-->
+                <li class="collection-item">
+                    <i class="material-icons link-icon">report</i>
+                    <a href="{% url 'protect:complaint' %}" class="collection-link"><span>File a Complaint</span></a>
+
+                </li>
+                <li class="collection-item">
+                    <i class="material-icons link-icon ">person_add</i>
+                    <a href="{% url 'protect:complaint' %}"
+                       class="collection-link"><span>Register</span></a>
+                </li>
+                <li class="collection-item">
+                    <i class="material-icons link-icon" aria-hidden="true">insert_drive_file</i>
+                    <a href="{% url 'protect:complaint' %}" class="collection-link"><span>Forms</span></a>
+                </li>
+            </ul>
+
+            <div class="card z-depth-1 mt30" style="max-height: 400px; overflow-y: scroll;">
+                <a class="twitter-timeline" href="https://twitter.com/cop_uga?ref_src=twsrc%5Etfw">Tweets by
+                    cop_uga</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+        <!-- end Right 'Request Host' column  -->
+
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    $('.carousel').carousel({fullWidth: true,
+      indicators: true});
+       // move next carousel
+   $('.moveNextCarousel').click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      $('.carousel').carousel('next');
+   });
+
+   // move prev carousel
+   $('.movePrevCarousel').click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      $('.carousel').carousel('prev');
+   });
+  });
+
+(function(window, document, undefined) {
+
+  /* Carousel */
+  // start carrousel
+
+   $('.carousel.carousel-slider').carousel({
+      fullWidth: true,
+      indicators: false
+   });
+
+
+   // move next carousel
+   $('.moveNextCarousel').click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      $('.carousel').carousel('next');
+   });
+
+   // move prev carousel
+   $('.movePrevCarousel').click(function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      $('.carousel').carousel('prev');
+   });
+
+   /* Datatable */
+
+  var factory = function($, DataTable) {
+    "use strict";
+
+    $('.search-toggle').click(function() {
+      if ($('.hiddensearch').css('display') == 'none')
+        $('.hiddensearch').slideDown();
+      else
+        $('.hiddensearch').slideUp();
+    });
+
+    /* Set the defaults for DataTables initialisation */
+    $.extend(true, DataTable.defaults, {
+      dom: "<'hiddensearch'f'>" +
+        "tr" +
+        "<'table-footer'lip'>",
+      renderer: 'material'
+    });
+
+    /* Default class modification */
+    $.extend(DataTable.ext.classes, {
+      sWrapper: "dataTables_wrapper",
+      sFilterInput: "form-control input-sm",
+      sLengthSelect: "form-control input-sm"
+    });
+
+    /* Bootstrap paging button renderer */
+    DataTable.ext.renderer.pageButton.material = function(settings, host, idx, buttons, page, pages) {
+      var api = new DataTable.Api(settings);
+      var classes = settings.oClasses;
+      var lang = settings.oLanguage.oPaginate;
+      var btnDisplay, btnClass, counter = 0;
+
+      var attach = function(container, buttons) {
+        var i, ien, node, button;
+        var clickHandler = function(e) {
+          e.preventDefault();
+          if (!$(e.currentTarget).hasClass('disabled')) {
+            api.page(e.data.action).draw(false);
+          }
+        };
+
+        for (i = 0, ien = buttons.length; i < ien; i++) {
+          button = buttons[i];
+
+          if ($.isArray(button)) {
+            attach(container, button);
+          } else {
+            btnDisplay = '';
+            btnClass = '';
+
+            switch (button) {
+
+              case 'first':
+                btnDisplay = lang.sFirst;
+                btnClass = button + (page > 0 ?
+                  '' : ' disabled');
+                break;
+
+              case 'previous':
+                btnDisplay = '<i class="material-icons">chevron_left</i>';
+                btnClass = button + (page > 0 ?
+                  '' : ' disabled');
+                break;
+
+              case 'next':
+                btnDisplay = '<i class="material-icons">chevron_right</i>';
+                btnClass = button + (page < pages - 1 ?
+                  '' : ' disabled');
+                break;
+
+              case 'last':
+                btnDisplay = lang.sLast;
+                btnClass = button + (page < pages - 1 ?
+                  '' : ' disabled');
+                break;
+
+            }
+
+            if (btnDisplay) {
+              node = $('<li>', {
+                  'class': classes.sPageButton + ' ' + btnClass,
+                  'id': idx === 0 && typeof button === 'string' ?
+                    settings.sTableId + '_' + button : null
+                })
+                .append($('<a>', {
+                    'href': '#',
+                    'aria-controls': settings.sTableId,
+                    'data-dt-idx': counter,
+                    'tabindex': settings.iTabIndex
+                  })
+                  .html(btnDisplay)
+                )
+                .appendTo(container);
+
+              settings.oApi._fnBindAction(
+                node, {
+                  action: button
+                }, clickHandler
+              );
+
+              counter++;
+            }
+          }
+        }
+      };
+
+      // IE9 throws an 'unknown error' if document.activeElement is used
+      // inside an iframe or frame.
+      var activeEl;
+
+      try {
+        // Because this approach is destroying and recreating the paging
+        // elements, focus is lost on the select button which is bad for
+        // accessibility. So we want to restore focus once the draw has
+        // completed
+        activeEl = $(document.activeElement).data('dt-idx');
+      } catch (e) {}
+
+      attach(
+        $(host).empty().html('<ul class="material-pagination"/>').children('ul'),
+        buttons
+      );
+
+      if (activeEl) {
+        $(host).find('[data-dt-idx=' + activeEl + ']').focus();
+      }
+    };
+
+    /*
+     * TableTools Bootstrap compatibility
+     * Required TableTools 2.1+
+     */
+    if (DataTable.TableTools) {
+      // Set the classes that TableTools uses to something suitable for Bootstrap
+      $.extend(true, DataTable.TableTools.classes, {
+        "container": "DTTT btn-group",
+        "buttons": {
+          "normal": "btn btn-default",
+          "disabled": "disabled"
+        },
+        "collection": {
+          "container": "DTTT_dropdown dropdown-menu",
+          "buttons": {
+            "normal": "",
+            "disabled": "disabled"
+          }
+        },
+        "print": {
+          "info": "DTTT_print_info"
+        },
+        "select": {
+          "row": "active"
+        }
+      });
+
+      // Have the collection use a material compatible drop down
+      $.extend(true, DataTable.TableTools.DEFAULTS.oTags, {
+        "collection": {
+          "container": "ul",
+          "button": "li",
+          "liner": "a"
+        }
+      });
+    }
+
+  }; // /factory
+
+  // Define as an AMD module if possible
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery', 'datatables'], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS
+    factory(require('jquery'), require('datatables'));
+  } else if (jQuery) {
+    // Otherwise simply initialise as normal, stopping multiple evaluation
+    factory(jQuery, jQuery.fn.dataTable);
+  }
+
+})(window, document);
+
+$(document).ready(function() {
+  $('#datatable').dataTable({
+    "oLanguage": {
+      "sStripClasses": "",
+      "sSearch": "",
+      "sSearchPlaceholder": "Enter Keywords Here",
+      "sInfo": "_START_ -_END_ of _TOTAL_",
+      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+        '<option value="10">10</option>' +
+        '<option value="20">20</option>' +
+        '<option value="30">30</option>' +
+        '<option value="40">40</option>' +
+        '<option value="50">50</option>' +
+        '<option value="-1">All</option>' +
+        '</select></div>'
+    },
+    bAutoWidth: false
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</div>
+
+{% endblock content %}
+
+
+

@@ -1,0 +1,489 @@
+{% extends 'base.html' %}
+{% load material_form %}
+
+{% block content %}
+<style type="text/css">
+    .btn,
+.btn-large,
+.btn-small,
+.btn-flat {
+   border-radius: 4px;
+   font-weight: 500;
+}
+
+.card:hover {
+   box-shadow: 0px 10px 35px 0px rgba(0, 0, 0, 0.18);
+}
+
+.card {
+   border-radius: 6px;
+   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+
+
+
+
+</style>
+
+
+{% if request.user.is_admin %}
+
+<a class="waves-effect waves-dark btn green darken-1  "
+   href="{% url 'add_faq' %}"> Add FAQ
+</a>
+{% endif %}
+
+
+<div class="section">
+    <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="pl50 pr30">
+            <div class="col xl12 l12 m12 s12">
+                <div class="card">
+                    <div class="card-content">
+
+                        <ul class="stepper horizontal">
+                            
+
+                            <li class="step server-host ">
+                                <div class="step-title server-host-title waves-effect waves-dark">Electronic
+                                    Transactions Act
+                                </div>
+                                <div class="step-content">
+
+                                    <h5 style="font-weight: bold;">A. AGREEMENT OF SCALE</h5>
+
+                                    <p style="font-weight: bold;">1. Should a supplier providing goods or services
+                                        through electronic transactions provide for agreements to be executed between
+                                        the supplier and buyer?</p>
+
+                                    <p>All suppliers providing goods or services through electronic transactions
+                                        should provide for agreements with details of the terms and conditions that
+                                        will apply to the transaction.</p>
+
+                                    <p style="font-weight: bold;">2. Can I access the terms and conditions and
+                                        in what form should they be?</p>
+
+                                    <p>Yes, a customer should be able to access the terms and conditions. The terms and
+                                        conditions should be accessed, stored and reproduced electronically by the
+                                        consumer.</p>
+
+                                    <h5 style="font-weight: bold;">B. SECURITY AND PAYMENT INFORMATION AND PRIVACY</h5>
+
+                                    <p style="font-weight: bold;">3. Is my payment information supplied online to a
+                                        supplier of goods and services secure?</p>
+
+                                    <p>Suppliers are required to ensure that they use secure payment systems and have
+                                        security procedures in place to safeguard the payment information you supply
+                                        them when buying goods or services electronically. It is therefore advisable
+                                        that you review the supplier’s website to establish whether they have security
+                                        measures and procedures in place, for example websites which have a security
+                                        lock icon displayed at the beginning of their URL demonstrates that the website
+                                        is “Secure” or “Verified”; and it should also possess a URL which starts with
+                                        “https” instead of “http” which means the site is secured using an SSL
+                                        Certificate
+                                        (the s stands for secure). SSL Certificates secure all of your data as it is
+                                        passed
+                                        from your browser to the website's server. To some extent, this provides some
+                                        comfort
+                                        that the website is fairly secure. You can also use safe payment platforms like
+                                        paypal
+                                        to make payments to the suppliers as this to a larger extent reduces the
+                                        likelihood of
+                                        your payment information being compromised and accessed by unauthorized persons
+                                        or even
+                                        abused. Suppliers should also ensure that they have privacy policies in place
+                                        and adhere
+                                        to them.</p>
+
+                                    <p style="font-weight: bold;">4. Suppliers tend to send unsolicited messages after
+                                        I have used their website. How can I stop these messages from coming through to
+                                        my email address? </p>
+
+                                    <p>Whereas it is not illegal for a supplier to send unsolicited messages to a buyer,
+                                        suppliers
+                                        are required to give buyers an option to cancel subscription to a mailing list
+                                        and this
+                                        should be at no cost to the buyer. </p>
+
+                                    <h5 style="font-weight: bold;">C. CANCELLATION AND REFUND OF PAYMENT FOR GOODS OR
+                                        SERVICES </h5>
+
+                                    <p style="font-weight: bold;">5. Can I cancel an electronic transaction for the
+                                        supply of
+                                        goods or services?</p>
+
+                                    <p>Yes, within 7 (seven) days after the date of receipt of the goods or services;
+                                        or {Incomplete}</p>
+
+                                    <p style="font-weight: bold;">6. Do I get a full refund after cancellation of an
+                                        electronic transaction for the supply of goods or services?</p>
+
+                                    <p>Yes, you are entitled to a refund, less the costs for returning the goods
+                                        (these costs could be shipping/courier costs)</p>
+
+                                    <p style="font-weight: bold;">7. Within what period must a supplier of goods
+                                        or services refund a payment where the customer cancels an electronic
+                                        transaction?</p>
+
+                                    <p>The supplier must refund the money paid for the goods or services within 30
+                                        (thirty)
+                                        days from the date of cancellation.</p>
+
+                                    <p style="font-weight: bold;">8. After placing an order for goods or services,
+                                        within what period shall I receive the goods or services?</p>
+
+                                    <p>The supplier must execute the order within 30 (thirty) days unless otherwise
+                                        agreed by the supplier and buyer.</p>
+
+                                    <p style="font-weight: bold;">9. Can I cancel the order if the supplier fails
+                                        to execute the order?</p>
+
+                                    <p>Yes, you may cancel the order within 30 (thirty) days or other period agreed
+                                        to by the supplier and buyer. However, the buyer must give the supplier 7
+                                        (seven)
+                                        days written notice prior to cancellation.</p>
+
+                                    <p style="font-weight: bold;">10. If the supplier fails to supply the goods
+                                        due to in availability of the goods or services, am I entitled to a refund?</p>
+
+                                    <p>The supplier is required to inform you of the unavailability of the goods or
+                                        services
+                                        before the expiry of the delivery period (30 (thirty) days or any other time
+                                        agreed
+                                        to by the supplier and buyer) and the buyer is entitled to a refund within 30
+                                        (thirty)
+                                        days. </p>
+
+
+                                    <div class="step-actions">
+                                        <button class="waves-effect waves-dark btn green darken-1 next-step"
+                                                data-feedback="anyThing">Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="step requirements">
+                                <div class="step-title requirements-title waves-effect waves-dark">IT Certification
+                                </div>
+                                <div class="step-content">
+
+                                    <p style="font-weight: bold;">1. What is the purpose of certifying a provider of
+                                        IT goods and services?</p>
+
+                                    <p>The purpose of the Regulations is to provide a legal framework for regulating
+                                        providers of Information Technology products and services to ensure consumer
+                                        protection. </p>
+
+                                    <p style="font-weight: bold;">2. Should I deal with a provider that is not
+                                        certified by NITA-U?</p>
+
+                                    <p>We advise that you only deal with providers that are certified by NITA-U as
+                                        a person is prohibited from providing IT goods and services without being
+                                        certified by NITA-U.</p>
+
+                                    <p style="font-weight: bold;">3. What are the benefits of dealing with
+                                        a certified provider of IT goods and services?</p>
+
+                                    <p>It is reassurance that the provider is legally conducting the business of
+                                        providing IT goods and services and is qualified to provide the goods
+                                        and services; and confirms that the provider meets the requirements and
+                                        standards under the Regulations.</p>
+
+                                    <p style="font-weight: bold;">4. How do I know that I am dealing with a
+                                        certified provider of IT goods and services?</p>
+
+                                    <p>You may request the provider to produce a certificate issued by the National
+                                        Information Technology Authority, Uganda confirming that they are certified.
+                                        You may also visit the NITA-U website and check the list of published certified
+                                        providers.</p>
+
+                                    <p style="font-weight: bold;">5. How can I verify the authenticity of the
+                                        certificate of a provider of IT goods and services?</p>
+
+                                    <p>You may visit the IT Certification web portal www.itco.go.ug accessible
+                                        through the NITA-U website and check the list of published certified
+                                        providers. Further, if you are evaluating a provider for a bid, you may
+                                        verify the authenticity of the Certification certificate by scanning the
+                                        QR Code on the certificate using a QR Code scanner.</p>
+
+                                    <p style="font-weight: bold;">6. What is the validity of a certificate
+                                        issued by the Authority to a provider of IT goods and services?</p>
+
+                                    <p>A certificate shall be valid for 1 (one) year from the date of issue.</p>
+
+                                    <p style="font-weight: bold;">7. In case a dispute arises between a
+                                        consumer and a provider of IT goods and services, what should the
+                                        consumer do. </p>
+
+                                    <p>In case you have a contract with the provider, you may invoke the dispute
+                                        resolution mechanism that has been provided for. Where the contract provides
+                                        for an alternative dispute resolution mechanism like mediation or arbitration,
+                                        the Parties may select a mediator or arbitrator or may refer the matter to
+                                        NITA-U for mediation or arbitration. In case the Parties agree that where
+                                        arbitration fails, they may refer the matter to the courts of law, then a
+                                        party may take the matter to the courts.</p>
+
+                                    <p style="font-weight: bold;">8. Do foreign companies have to be certified
+                                        by NITA-U to carry out business in Uganda?</p>
+
+                                    <p>Yes, the requirement for IT Certification also applies to foreign companies
+                                        or individuals that wish to provide goods or services in Uganda.
+                                        Such provider will make an application for Certification from NITA-U
+                                        and if they meet the requirements under the IT Certification Regulations,
+                                        they will be granted a Certificate.</p>
+
+                                    <p style="font-weight: bold;">9. Would a certification or accreditation
+                                        issued by an authorized foreign organization to a foreign company that
+                                        is carrying out business in Uganda or is interested in conducting business
+                                        in Uganda satisfy NITA-U’s requirement for a provider to be certified in
+                                        order to conduct business in Uganda?</p>
+
+                                    <p>No. A certification or accreditation issued by an authorized foreign
+                                        organization to a foreign company that is carrying out business in
+                                        Uganda or is interested in conducting business in Uganda would not
+                                        satisfy NITA-U’s requirements for certification. A foreign company
+                                        would still be required to apply for certification by NITA-U.</p>
+
+                                    <p style="font-weight: bold;">10. When can a provider’s certification
+                                        be suspended or cancelled?</p>
+
+                                    <p>If the provider acts in contravention of the NITA-U Act or NITA-U
+                                        (Certification of Providers of Information Technology Products or Services)
+                                        (Amendment) Regulations 2018 or where the provider’s capacity to provide
+                                        the IT products or services has diminished in a manner that affects the
+                                        certification.</p>
+
+                                    <div class="step-actions">
+                                        <button class="waves-effect waves-dark btn green darken-1 next-step">Continue
+                                        </button>
+                                        <button class="waves-effect waves-dark btn-flat previous-step">Back</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="step default-step">
+                                <div class="step-title waves-effect waves-dark">Quality Assurance</div>
+                                <div class="step-content">
+
+                                    <h5 style="font-weight: bold;">Frequently Asked Questions (FAQs) for E-Commerce
+                                        Consumers</h5>
+
+                                    <p style="font-weight: bold;">1. What are cookies?</p>
+
+                                    <p>Cookies are pieces of information about your activity on a website.
+                                        They store information that can help the website owner customise
+                                        your user experience based on your preferences. Cookies may be used
+                                        to recommend products to customers based on the items they frequently
+                                        search for or buy. </p>
+
+                                    <p style="font-weight: bold;">2. Is it safe to allow/accept cookies?</p>
+
+                                    <p>Yes, it is safe to allow/accept cookies. However, some websites may allow
+                                        third parties to use their cookies to deliver ads and other content through
+                                        their website. This may indirectly give information about your activities to
+                                        third parties who then use it to send targeted ads to you. You can enable
+                                        cookies and also prevent being tracked by third parties by having strict
+                                        privacy restriction in your browser. Review your browser’s privacy features.</p>
+
+                                    <p style="font-weight: bold;">3. What is encryption and how is it helpful
+                                        to a customer when shopping online?</p>
+
+                                    <p>Encryption is a mechanism used to hide information. While transferring
+                                        information between a website and a customer, encryption is used to hide
+                                        the customer and vendor’s information to keep it private. A customer’s
+                                        credit/debit card data, personal data, transaction history and other
+                                        information are kept private using encryption.</p>
+
+                                    <p style="font-weight: bold;">4. How can a customer know/check that an
+                                        e-commerce platform/website is using encryption?</p>
+
+                                    <p>In the address bar of every browser, before the website address, there
+                                        is a padlock icon that shows that a website is encrypted. A padlock is
+                                        the universal symbol for encryption. An open padlock means there is no
+                                        encryption and the icon may also have a cancelled symbol around it.</p>
+
+                                    <p style="font-weight: bold;">5. What is a chatbot/bot and how do I
+                                        know if my complaint is received by the right person?</p>
+
+                                    <p>A chatbot is a software tool, an innovative way to quickly help
+                                        customers find what they need without directly contacting a
+                                        human. However, some hackers can compromise a website and use
+                                        pop-up windows to trick a customer into a chat conversation
+                                        where they will ask the customer to verify their details by
+                                        entering them in a text field. Be cautious of such attempts.</p>
+
+                                    <p style="font-weight: bold;">6. What is a strong password?</p>
+
+                                    <p>A strong password is one that cannot be easily guessed from
+                                        information known about a customer. A strong password should
+                                        have 8 or more characters and contain alphanumeric symbols
+                                        such as (! ? # @ + & $ - )</p>
+
+                                    <p style="font-weight: bold;">7. What responsibilities do customers
+                                        of e-commerce platforms have to ensure their online payments are
+                                        secure?</p>
+
+                                    <p>A customer should ensure they are using the vendor’s Mobile app or
+                                        website and no other means to make online payments. When making
+                                        payments using a vendor’s website you need to be keen to verify
+                                        whether the website URL/address is correct and secured, evidenced
+                                        by the security padlock icon against their URL. You need to also
+                                        make sure you are using an updated browser and an updated computer
+                                        operating system.</p>
+
+                                    <p style="font-weight: bold;">8. What internet risks do I face while
+                                        using e-commerce platforms?</p>
+
+                                    <p>There are a number of threats that may pose a risk to using e-commerce
+                                        platforms and they present themselves in various forms. However, they
+                                        can all be neutralized. Some of these threats are hackers, scammers,
+                                        fraudsters, viruses and ransomware to mention a few. Phishing is the
+                                        most common method used by these actors to attack internet users.</p>
+
+                                    <p style="font-weight: bold;">9. What is phishing?</p>
+
+                                    <p>Phishing is an attempt to fraudulently obtain sensitive information
+                                        such as usernames and passwords or credit/debit card data by
+                                        disguising as a trustworthy entity or impersonating another entity
+                                        known to the targeted victim. This is often done through email
+                                        communication.</p>
+
+                                    <p style="font-weight: bold;">10. Can my credit card data be stolen
+                                        while I am making an online transaction?</p>
+
+                                    <p>It may be possible due to some unfortunate cases. If a customer
+                                        visited a website that looks exactly like the vendor’s website
+                                        they intended to go to without checking the website address to
+                                        verify if it’s correct then it’s likely that the customer is
+                                        going to initiate a transaction and enter his/her credit/debit
+                                        card data only to be stolen by malicious people/groups.
+                                        Another scenario is when a customer receives an email (also called a
+                                        phishing email) of a sale promotion or discount asking him/her
+                                        to click a link to immediately redeem the discount/offer.
+                                        The link opens a page or redirects the customer to a page that looks
+                                        exactly like the vendor’s website where the products are to be bought
+                                        and prompts the customer to enter their credit/debit card data.</p>
+
+                                    <p style="font-weight: bold;">11. What should I do after falling
+                                        victim of online fraud?</p>
+
+                                    <p> Step 1: Report the incident to the National Computer Emergency
+                                        Response Team – CERT and give a full description of how it happened.
+                                        Attach some screenshots for more precise details.
+
+                                        Step 2: Notify your bank of the incident and ask them to block your account.
+
+                                        Step 3: Reset/Change the password which you used on the e-commerce
+                                        platform from which you were impersonated as well as for your email
+                                        account through which you received the phishing email (In case of phishing).
+
+                                        Step 4: If your incident started with a phishing/fraudulent email,
+                                        go to your email inbox and mark the email you received as Spam.
+                                        If you were using a business email (yourname@company.com) then
+                                        you need to consider switching to a personal email account that
+                                        you can use for all personal online activity. </p>
+
+                                    <div class="step-actions">
+                                        <button class="waves-effect waves-dark btn green darken-1 next-step">Continue
+                                        </button>
+                                        <button class="waves-effect waves-dark btn-flat previous-step">Back</button>
+                                    </div>
+
+
+                                </div>
+                            </li>
+
+                            <li class="step requirements">
+                                <div class="step-title server-host-title waves-effect waves-dark">Advisory 1</div>
+                                <div class="step-content">
+
+                                    {% include 'web/advisory1.html' %}
+
+
+                                    <div class="step-actions">
+                                        <button class="waves-effect waves-dark btn green darken-1 next-step">Continue
+                                        </button>
+                                        <button class="waves-effect waves-dark btn-flat previous-step">Back</button>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="step requirements">
+                                <div class="step-title server-host-title waves-effect waves-dark">Advisory 2</div>
+                                <div class="step-content">
+
+                                    {% include 'web/advisory2.html' %}
+
+
+                                    <a class="waves-effect waves-dark btn green darken-1 right"
+                                       href="{% url 'user' %}"> Submit
+                                    </a>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('select').formSelect();
+});
+
+function anyThing(destroyFeedback) {
+  setTimeout(function(){ destroyFeedback(true); }, 1500);
+}
+
+function noThing(destroyFeedback) {
+  setTimeout(function(){ destroyFeedback(true); }, 10000);
+}
+
+var stepperDiv = document.querySelector('.stepper');
+console.log(stepperDiv);
+var stepper = new MStepper(stepperDiv);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock content %}
